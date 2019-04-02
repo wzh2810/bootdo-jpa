@@ -1,0 +1,137 @@
+package ${package}.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import ${package}.domain.${className}DO;
+import ${package}.service.${className}Service;
+import com.bootdo_jpa.common.controller.BaseController;
+import com.bootdo_jpa.common.utils.PageUtils;
+import com.bootdo_jpa.common.utils.Query;
+import com.bootdo_jpa.common.utils.R;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+ 
+@Controller
+@RequestMapping("/${pathName}/${classname}")
+public class ${className}Controller extends BaseController {
+
+	@Autowired
+	private ${className}Service ${classname}Service;
+	
+	@GetMapping()
+	@RequiresPermissions("${pathName}:${classname}:${classname}")
+	String ${className}(){
+	    return "${pathName}/${classname}/${classname}";
+	}
+	
+	@ResponseBody
+	@GetMapping("/list")
+	@RequiresPermissions("${pathName}:${classname}:${classname}")
+	public PageUtils list(@RequestParam Map<String, Object> params){
+		PageUtils pageUtils = null;
+    	try {
+    		Query query = new Query(params);
+    		pageUtils = ${classname}Service.findAllByPage(query, ${className}DO.class, "${pk.attrname}");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return pageUtils;
+	}
+	
+	@GetMapping("/add")
+	@RequiresPermissions("${pathName}:${classname}:add")
+	String add(){
+	    return "${pathName}/${classname}/add";
+	}
+
+	@GetMapping("/edit/{${pk.attrname}}")
+	@RequiresPermissions("${pathName}:${classname}:edit")
+	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
+		${className}DO ${classname} = ${classname}Service.findById(${pk.attrname});
+		model.addAttribute("${classname}", ${classname});
+	    return "${pathName}/${classname}/edit";
+	}
+	
+	/**
+	 * 保存
+	 */
+	@ResponseBody
+	@PostMapping("/save")
+	@RequiresPermissions("${pathName}:${classname}:add")
+	public R save( ${className}DO ${classname}){
+		try {
+			${classname}Service.save(${classname});
+			return R.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error();
+		}
+	}
+	
+	/**
+	 * 修改
+	 */
+	@ResponseBody
+	@RequestMapping("/update")
+	@RequiresPermissions("${pathName}:${classname}:edit")
+	public R update( ${className}DO ${classname}){
+		try {
+			${classname}Service.save(${classname});
+			return R.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error();
+		}
+	}
+	
+	/**
+	 * 删除
+	 */
+	@PostMapping( "/remove")
+	@ResponseBody
+	@RequiresPermissions("${pathName}:${classname}:remove")
+	public R remove( ${pk.attrType} ${pk.attrname}){
+		try {
+			${classname}Service.deleteById(${pk.attrname});
+			return R.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error();
+		}
+	}
+	
+	/**
+	 * 批量删除
+	 */
+	@PostMapping( "/batchRemove")
+	@ResponseBody
+	@RequiresPermissions("${pathName}:${classname}:batchRemove")
+	public R remove(@RequestParam("ids[]") ${pk.attrType}[] ${pk.attrname}s){
+		try {
+			${classname}Service.deleteByIds(${pk.attrname}s);
+			return R.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.error();
+		}
+	}
+	
+}

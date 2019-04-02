@@ -1,0 +1,15 @@
+package ${package}.service;
+
+import ${package}.domain.${className}DO;
+import com.bootdo_jpa.common.service.base.ICommonService;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service extends ICommonService<${className}DO> {
+	
+}

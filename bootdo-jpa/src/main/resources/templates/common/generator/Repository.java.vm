@@ -1,0 +1,17 @@
+package ${package}.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import ${package}.domain.${className}DO;
+
+/**
+ * ${comments}
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Repository extends JpaRepository<${className}DO, ${pk.attrType}>, JpaSpecificationExecutor<${className}DO> {
+	
+	int deleteBy${pk.attrName}In(${pk.attrType}[] ${pk.attrname}s);
+}

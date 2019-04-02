@@ -1,0 +1,37 @@
+package ${package}.service.impl;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Service;
+
+import ${package}.dao.${className}Repository;
+import ${package}.domain.${className}DO;
+import ${package}.service.${className}Service;
+import com.bootdo_jpa.common.service.base.AbsCommonService;
+
+@Service
+public class ${className}ServiceImpl extends AbsCommonService<${className}DO> implements ${className}Service {
+	
+	@Autowired
+	private ${className}Repository ${classname}Repository;
+	
+	@Override
+	@Transactional
+	public void deleteByIds(${pk.attrType}... ${pk.attrname}s) {
+		${classname}Repository.deleteBy${pk.attrName}In(${pk.attrname}s);
+	}
+
+	@Override
+	public JpaRepository<${className}DO, ${pk.attrType}> getDao() {
+		return ${classname}Repository;
+	}
+
+	@Override
+	public JpaSpecificationExecutor<${className}DO> getDao2() {
+		return ${classname}Repository;
+	}
+	
+}
