@@ -85,3 +85,8 @@ BootDo-JPA 提供了常用工具进行封装，包括日志工具、缓存工具
 
 如果感觉对您有帮助，请作者喝杯咖啡吧，请注明您的名字或者昵称，方便作者感谢o(*￣︶￣*)o
 ![输入图片说明](https://gitee.com/uploads/images/2019/0410/100110_31cccb2c_2293830.png "微信支付.png")![输入图片说明](https://gitee.com/uploads/images/2019/0410/100157_643c872e_2293830.jpeg "支付宝支付.jpg")
+
+感谢以下用户的支持：
+![输入图片说明](https://gitee.com/uploads/images/2019/0430/094543_8242e466_2293830.jpeg "QQ图片20190430093928.jpg")<br/>
+
+![输入图片说明](https://gitee.com/uploads/images/2019/0430/094604_407cc261_2293830.jpeg "QQ图片20190430093921.jpg")
